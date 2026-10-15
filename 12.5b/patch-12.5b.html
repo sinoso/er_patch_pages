@@ -82,11 +82,46 @@
     @media(max-width:800px){.page-shell{grid-template-columns:minmax(0,1fr);gap:24px;padding:24px 15px}.patch-sidebar{position:static;max-height:none;overflow:visible;padding-bottom:16px;border-bottom:1px solid #2c374b}.patch-sidebar h2{padding:0;margin-bottom:10px}.patch-list{display:flex;flex-wrap:wrap;gap:8px}.patch-list a{padding:8px 12px}.patch-list strong{font-size:var(--font-body)}.patch-list small{margin-top:2px}}
     @media(max-width:420px){.head,.change,.change-group-title{padding-left:14px;padding-right:14px}.head h3{font-size:20px}.card-reason{padding:10px 14px}}
     @media print{.page-shell{display:block;max-width:none;padding:0}.patch-sidebar{display:none}.card-reason,.group-note,.change-group-title{background:white;color:#333}.values .after{color:#111}.context-icon,.head[data-status]{background:white}}
+  
+    .page-shell{max-width:1600px}
+    .patch-content-layout{display:grid;grid-template-columns:minmax(0,1fr) 156px;gap:28px;min-width:0;align-items:start}
+    .category-toc-surface{position:sticky;top:32px;align-self:start;min-width:0}
+    .category-toc{max-height:calc(100vh - 64px);overflow-y:auto;margin:0;padding:0 0 0 16px;border:0;border-left:1px solid #2c374b;background:none;z-index:auto}
+    .category-toc-heading{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:12px}
+    .category-toc h2{margin:0;padding:0 12px;font-size:14px;font-weight:600;line-height:1.5;color:#a5b3ca}
+    .category-toc ul{display:grid;gap:4px;list-style:none;margin:0;padding:0}
+    .category-toc a{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:10px 12px;border:1px solid transparent;border-radius:8px;color:#a5b3ca;font-size:14px;line-height:1.5;text-decoration:none;white-space:nowrap}
+    .category-toc a:hover{background:#151e2d;color:#edf2fa}
+    .category-toc a[aria-current="location"]{background:#1b2638;border-color:#465477;color:#edf2fa}
+    .category-toc small{color:#8e9cb2;font-size:14px;font-variant-numeric:tabular-nums}
+    .category-toc-fab,.category-toc-footer{display:none}
+    .patch-content-layout #content>section{scroll-margin-top:24px}
+    @media(max-width:1200px){
+      .patch-content-layout{display:block}
+      .patch-content-layout main{padding-bottom:calc(84px + env(safe-area-inset-bottom,0px))}
+      .category-toc-surface{--toc-open-width:min(272px,calc(100vw - 32px));position:fixed;top:auto;right:max(16px,env(safe-area-inset-right,0px));bottom:calc(16px + env(safe-area-inset-bottom,0px));width:72px;height:52px;overflow:hidden;border:1px solid #465477;border-radius:26px;background:#1b2638;color:#edf2fa;box-shadow:0 6px 24px #0006;z-index:60;transition:width 260ms cubic-bezier(.2,.8,.2,1),height 260ms cubic-bezier(.2,.8,.2,1),border-radius 260ms ease,background-color 180ms ease,border-color 180ms ease,box-shadow 260ms ease}
+      .category-toc-surface.is-open{width:var(--toc-open-width);height:var(--toc-panel-height);border-radius:16px;border-color:#35415a;background:#151e2d;box-shadow:0 12px 36px #0007}
+      .category-toc{display:flex;flex-direction:column;position:absolute;top:0;right:0;width:var(--toc-open-width);height:100%;max-height:calc(100vh - 32px - env(safe-area-inset-bottom,0px));max-height:calc(100dvh - 32px - env(safe-area-inset-bottom,0px));overflow:hidden;padding:0;border:0;background:transparent;opacity:0;visibility:hidden;pointer-events:none;transform:translateY(8px);transition:opacity 90ms ease,transform 180ms ease,visibility 0s linear 90ms}
+      .category-toc-surface.is-open .category-toc{opacity:1;visibility:visible;pointer-events:auto;transform:none;transition:opacity 140ms ease 100ms,transform 220ms ease,visibility 0s}
+      .category-toc-heading{flex:0 0 auto;margin:0;padding:16px;border-bottom:1px solid #2c374b;background:#151e2d}
+      .category-toc h2{padding:0}
+      .category-toc ul{flex:0 1 auto;min-height:0;overflow-y:auto;overscroll-behavior:contain;padding:8px 16px}
+      .category-toc a{min-height:44px}
+      .category-toc-footer{display:flex;flex:0 0 auto;justify-content:flex-end;border-top:1px solid #2c374b;background:#151e2d}
+      .category-toc-fab{display:flex;position:absolute;inset:0;width:100%;height:100%;align-items:center;justify-content:center;padding:0;border:0;border-radius:inherit;background:transparent;color:inherit;font-family:inherit;font-size:14px;font-weight:700;line-height:1.4;cursor:pointer;opacity:1;transition:opacity 90ms ease 170ms}
+      .category-toc-surface:not(.is-open):hover{background:#1b2638;border-color:#65769e}
+      .category-toc-surface.is-open .category-toc-fab{opacity:0;pointer-events:none;transition:opacity 70ms ease}
+      .category-toc-close{display:flex;align-items:center;justify-content:center;width:72px;height:52px;padding:0;border:0;border-radius:0;background:#1b2638;color:#edf2fa;font-family:inherit;font-size:14px;line-height:1.4;cursor:pointer}
+      .category-toc-close:hover{background:#26354c}
+    }
+    @media(prefers-reduced-motion:reduce){.category-toc-surface{transition-duration:160ms}.category-toc,.category-toc-fab{transition-duration:80ms;transition-delay:0s;transform:none}}
+    @media print{.page-shell{max-width:none}.patch-content-layout{display:block}.category-toc-surface{display:none!important}.patch-content-layout main{padding-bottom:0}}
   </style>
 </head>
 <body>
 <div class="page-shell">
   <nav class="patch-sidebar" aria-label="패치노트 목록"><h2>패치노트</h2><ul class="patch-list"><li><a href="../12.6/index.html"><strong>12.6</strong><small>2026.10.15</small></a></li><li><a href="../12.5b/patch-12.5b.html" aria-current="page"><strong>12.5b</strong><small>2026.10.06</small></a></li><li><a href="../12.5/patch-12.5.html"><strong>12.5</strong><small>2026.10.01</small></a></li></ul></nav>
+<div class="patch-content-layout">
 <main>
   <header><div class="eyebrow">ETERNAL RETURN · PATCH NOTES</div><h1>12.5b <span>핫픽스</span></h1><p>2026.10.06 · 18:30 적용 예정 (KST)</p><p>세레스 · 이제 랭크 대전에서 사용할 수 있습니다.</p><p>연습 모드 및 툴팁에는 일부 수정 사항이 적용되지 않을 수 있습니다.</p></header>
   <div class="patch-overview">
@@ -97,6 +132,15 @@
   <noscript><p>패치 내용을 보려면 JavaScript를 활성화해 주세요.</p></noscript>
   <footer>비공식 패치노트입니다.<br>내용: <a href="https://playeternalreturn.com/posts/news/3882?hl=ko-KR" target="_blank" rel="noopener">공식 12.5b 패치노트</a><br>이미지: <a href="https://drive.google.com/drive/folders/1bgW32L09YPpRgQKtH4C_TAd3Kr0N9Y90" target="_blank" rel="noopener">이터널 리턴 팬키트</a> · © Nimble Neuron.<br>제공된 원문의 마지막 R 수식은 괄호가 누락되어 있었으며, 명시된 최대 체력 계수 1.2%를 사용했습니다.<br>사이트 이용 경험을 개선하기 위해 Google Analytics로 방문 및 이용 통계를 수집합니다.</footer>
 </main>
+<div class="category-toc-surface">
+<nav id="category-toc" class="category-toc" aria-labelledby="category-toc-title">
+  <div class="category-toc-heading"><h2 id="category-toc-title">빠른 이동</h2></div>
+  <ul><li><a href="#category-characters"><span>실험체</span><small>1</small></a></li></ul>
+  <div class="category-toc-footer"><button type="button" class="category-toc-close" aria-label="목차 닫기">닫기</button></div>
+</nav>
+<button type="button" class="category-toc-fab" aria-label="목차 열기" aria-controls="category-toc" aria-expanded="false">목차</button>
+</div>
+</div>
 </div>
 <script>
 const patch={"version":"12.5b","date":"2026.10.06 · 18:30 적용 예정 (KST)","source":"https://playeternalreturn.com/posts/news/3882?hl=ko-KR","scope":["실험체"],"targets":[{"category":"실험체","subcategory":"","name":"세레스","groups":[{"title":"경호(E)","changes":[{"id":1,"label":"대신 받는 피해량","before":"12/13/14/15/16(+추가 체력의 1%)%","after":"8/9/10/11/12(+추가 체력의 1%)%","direction":"higher","new":false,"source":"경호(E) · 대신 받는 피해량~12/13/14/15/16(+추가 체력의 1%)%~8/9/10/11/12(+추가 체력의 1%)%~nerf"},{"id":2,"label":"루치아 대신 받는 피해량","before":"16/17/18/19/20(+추가 체력의 1%)%","after":"12/13/14/15/16(+추가 체력의 1%)%","direction":"higher","new":false,"source":"경호(E) · 루치아 대신 받는 피해량~16/17/18/19/20(+추가 체력의 1%)%~12/13/14/15/16(+추가 체력의 1%)%~nerf"},{"id":3,"label":"체력 회복량 (경호 대상이 입힌 피해 비례)","before":"25%","after":"20%","direction":"higher","new":false,"source":"경호(E) · 체력 회복량 (경호 대상이 입힌 피해 비례)~25%~20%~nerf"},{"id":4,"label":"쿨다운","before":"12/11.5/11/10.5/10초","after":"13/12.5/12/11.5/11초","direction":"lower","new":false,"source":"경호(E) · 쿨다운~12/11.5/11/10.5/10초~13/12.5/12/11.5/11초~nerf"}],"notes":[]},{"title":"빛에게 바치는 맹세(R)","changes":[{"id":5,"label":"기본 보호막량","before":"15/30/45","after":"24/36/48","direction":"higher","new":false,"source":"빛에게 바치는 맹세(R) · 기본 보호막량~15/30/45~24/36/48~buff"},{"id":6,"label":"스킬 증폭 계수","before":"5%","after":"5%","direction":"higher","new":false,"source":"빛에게 바치는 맹세(R) · 스킬 증폭 계수~5%~5%"},{"id":7,"label":"최대 체력 계수","before":"1.5%","after":"1.2%","direction":"higher","new":false,"source":"빛에게 바치는 맹세(R) · 최대 체력 계수~1.5%~1.2%~nerf"}],"notes":[]}]}],"notices":["세레스 · 이제 랭크 대전에서 사용할 수 있습니다.","연습 모드 및 툴팁에는 일부 수정 사항이 적용되지 않을 수 있습니다."],"sourceNote":"제공된 원문의 마지막 R 수식은 괄호가 누락되어 있었으며, 명시된 최대 체력 계수 1.2%를 사용했습니다."};
@@ -242,6 +286,80 @@ function render(){
   }).join('')||'<p>표시할 패치 내용이 없습니다.</p>';
 }
 render();
+</script>
+
+<script data-category-navigation>
+(() => {
+  const categories = [{"name":"실험체","id":"category-characters","count":1}];
+  const surface = document.querySelector('.category-toc-surface');
+  const navigation = document.querySelector('.category-toc');
+  const toggle = document.querySelector('.category-toc-fab');
+  const close = document.querySelector('.category-toc-close');
+  const heading = navigation.querySelector('.category-toc-heading');
+  const list = navigation.querySelector('ul');
+  const footer = navigation.querySelector('.category-toc-footer');
+  const smallScreen = window.matchMedia('(max-width:1200px)');
+  const sections = Array.from(document.querySelectorAll('#content>section'));
+  const links = Array.from(navigation.querySelectorAll('a'));
+  function updatePanelHeight() {
+    const limit = parseFloat(window.getComputedStyle(navigation).maxHeight);
+    const height = heading.offsetHeight + list.scrollHeight + footer.offsetHeight + surface.offsetHeight - surface.clientHeight;
+    surface.style.setProperty('--toc-panel-height', Math.ceil(Math.min(height, limit)) + 'px');
+  }
+  function setOpen(open, restoreFocus = false) {
+    const expanded = open && smallScreen.matches;
+    if (expanded) updatePanelHeight();
+    surface.classList.toggle('is-open', expanded);
+    toggle.setAttribute('aria-expanded', String(expanded));
+    toggle.inert = expanded;
+    navigation.inert = smallScreen.matches && !expanded;
+    navigation.setAttribute('aria-hidden', String(smallScreen.matches && !expanded));
+    if (expanded) close.focus({ preventScroll: true });
+    else if (restoreFocus && smallScreen.matches) toggle.focus({ preventScroll: true });
+  }
+  toggle.addEventListener('click', () => setOpen(true));
+  close.addEventListener('click', () => setOpen(false, true));
+  navigation.addEventListener('click', event => {
+    if (smallScreen.matches && event.target.closest('a')) setOpen(false, true);
+  });
+  document.addEventListener('pointerdown', event => {
+    if (smallScreen.matches && surface.classList.contains('is-open') && !surface.contains(event.target)) setOpen(false);
+  });
+  document.addEventListener('keydown', event => {
+    if (event.key === 'Escape' && toggle.getAttribute('aria-expanded') === 'true') setOpen(false, true);
+  });
+  smallScreen.addEventListener('change', () => setOpen(false));
+  for (const section of sections) {
+    const name = section.querySelector('[data-category]')?.getAttribute('data-category');
+    const category = categories.find(category => category.name === name);
+    if (category) section.id = category.id;
+  }
+  function updateCurrentCategory() {
+    let current = sections[0]?.id;
+    for (const section of sections) {
+      if (section.getBoundingClientRect().top <= 96) current = section.id;
+    }
+    for (const link of links) {
+      if (link.getAttribute('href') === '#' + current) link.setAttribute('aria-current', 'location');
+      else link.removeAttribute('aria-current');
+    }
+  }
+  let scheduled = false;
+  window.addEventListener('scroll', () => {
+    if (scheduled) return;
+    scheduled = true;
+    window.requestAnimationFrame(() => { scheduled = false; updateCurrentCategory(); });
+  }, { passive: true });
+  window.addEventListener('resize', () => {
+    if (smallScreen.matches && surface.classList.contains('is-open')) updatePanelHeight();
+    updateCurrentCategory();
+  });
+  window.addEventListener('hashchange', updateCurrentCategory);
+  const destination = sections.find(section => '#' + section.id === location.hash);
+  if (destination) destination.scrollIntoView();
+  setOpen(false);
+  updateCurrentCategory();
+})();
 </script>
 </body>
 </html>
