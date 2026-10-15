@@ -1,6 +1,33 @@
 <!doctype html>
 <html lang="ko">
 <head>
+  <!-- Google tag (gtag.js): published site only -->
+  <script data-erpatch-analytics>
+  (() => {
+    const site = new URL("https://sinoso.github.io/er_patch_pages/");
+    const published = location.origin === site.origin && location.pathname.startsWith(site.pathname);
+    if (!published) return;
+    const options = {};
+    // Consume the original referral only on the destination of an immediate redirect.
+    try {
+      const pending = JSON.parse(sessionStorage.getItem("erpatch:redirect-attribution"));
+      sessionStorage.removeItem("erpatch:redirect-attribution");
+      if (pending && pending.destination === location.href &&
+          Date.now() - pending.time >= 0 && Date.now() - pending.time < 30000 &&
+          typeof pending.referrer === 'string') {
+        options.page_referrer = pending.referrer;
+      }
+    } catch (_) {}
+    window.dataLayer = window.dataLayer || [];
+    window.gtag = window.gtag || function () { window.dataLayer.push(arguments); };
+    window.gtag('js', new Date());
+    window.gtag('config', "G-HRW2H09PB5", options);
+    const tag = document.createElement('script');
+    tag.async = true;
+    tag.src = "https://www.googletagmanager.com/gtag/js?id=G-HRW2H09PB5";
+    document.head.appendChild(tag);
+  })();
+  </script>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>이터널 리턴 12.5b 패치노트</title>

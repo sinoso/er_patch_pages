@@ -1,1 +1,18 @@
-<!doctype html><html lang="ko"><meta charset="utf-8"><meta http-equiv="refresh" content="0;url=12.5/patch-12.5.html"><title>12.5 패치노트</title><a href="12.5/patch-12.5.html">12.5 패치노트 열기</a></html>
+<!doctype html><html lang="ko"><head>
+  <script data-erpatch-redirect>
+  (() => {
+    const destination = new URL("12.5/patch-12.5.html", location.href);
+    destination.search = location.search;
+    destination.hash = location.hash;
+    const site = new URL("https://sinoso.github.io/er_patch_pages/");
+    const published = location.origin === site.origin && location.pathname.startsWith(site.pathname);
+    if (published) {
+      try {
+        sessionStorage.setItem("erpatch:redirect-attribution", JSON.stringify({
+          destination: destination.href, referrer: document.referrer, time: Date.now()
+        }));
+      } catch (_) {}
+    }
+    location.replace(destination.href);
+  })();
+  </script><meta charset="utf-8"><noscript><meta http-equiv="refresh" content="0;url=12.5/patch-12.5.html"></noscript><title>12.5 패치노트</title></head><body><a href="12.5/patch-12.5.html">12.5 패치노트 열기</a></body></html>
