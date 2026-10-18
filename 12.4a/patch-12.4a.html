@@ -120,7 +120,7 @@
 </head>
 <body>
 <div class="page-shell">
-  <nav class="patch-sidebar" aria-label="패치노트 목록"><h2>패치노트</h2><ul class="patch-list"><li><a href="../12.6/index.html"><strong>12.6</strong><small>2026.10.15</small></a></li><li><a href="../12.5b/patch-12.5b.html"><strong>12.5b</strong><small>2026.10.06</small></a></li><li><a href="../12.5a/patch-12.5a.html"><strong>12.5a</strong><small>2026.10.02</small></a></li><li><a href="../12.5/patch-12.5.html"><strong>12.5</strong><small>2026.10.01</small></a></li><li><a href="../12.4a/patch-12.4a.html" aria-current="page"><strong>12.4a</strong><small>2026.09.18</small></a></li><li><a href="../12.4/patch-12.4.html"><strong>12.4</strong><small>2026.09.17</small></a></li></ul></nav>
+  <nav class="patch-sidebar" aria-label="패치노트 목록"><h2>패치노트</h2><ul class="patch-list"><li><a href="../12.6/index.html"><strong>12.6</strong><small>2026.10.15</small></a></li><li><a href="../12.5b/patch-12.5b.html"><strong>12.5b</strong><small>2026.10.06</small></a></li><li><a href="../12.5a/patch-12.5a.html"><strong>12.5a</strong><small>2026.10.02</small></a></li><li><a href="../12.5/patch-12.5.html"><strong>12.5</strong><small>2026.10.01</small></a></li><li><a href="../12.4a/patch-12.4a.html" aria-current="page"><strong>12.4a</strong><small>2026.09.18</small></a></li><li><a href="../12.4/patch-12.4.html"><strong>12.4</strong><small>2026.09.17</small></a></li><li><a href="../12.3a/patch-12.3a.html"><strong>12.3a</strong><small>2026.09.07</small></a></li><li><a href="../12.3/patch-12.3.html"><strong>12.3</strong><small>2026.09.03</small></a></li><li><a href="../12.2c/patch-12.2c.html"><strong>12.2c</strong><small>2026.08.27</small></a></li><li><a href="../12.2b/patch-12.2b.html"><strong>12.2b</strong><small>2026.08.25</small></a></li><li><a href="../12.2a/patch-12.2a.html"><strong>12.2a</strong><small>2026.08.21</small></a></li><li><a href="../12.2/patch-12.2.html"><strong>12.2</strong><small>2026.08.20</small></a></li></ul></nav>
 <div class="patch-content-layout">
 <main>
   <header><div class="eyebrow">ETERNAL RETURN · PATCH NOTES</div><h1>12.4a <span>핫픽스</span></h1><p>2026.09.18 · 15:00 적용 예정 (KST)</p><p>밸런스 수치 변경 없이 버그 수정만 안내된 핫픽스입니다.</p><p>클라이언트 업데이트가 필요합니다. 빌드에 따라 적용 시각은 최대 30분 차이가 있을 수 있습니다.</p></header>
@@ -145,7 +145,7 @@
 <script>
 const patch={"version":"12.4a","date":"2026.09.18 · 15:00 적용 예정 (KST)","source":"https://playeternalreturn.com/posts/news/3850?hl=ko-KR","targets":[{"category":"버그 수정","subcategory":"","name":"버그 수정","textOnly":true,"badge":"수정","groups":[{"title":"안내","changes":[],"notes":["특정 상황에서 게임 종료 후 로비 화면으로 복귀하지 못하고 멈추는 문제 수정","시즌12 전라남도 이스포츠 아이콘 해상도가 낮게 출력되는 문제 수정"]}]}],"notices":["밸런스 수치 변경 없이 버그 수정만 안내된 핫픽스입니다.","클라이언트 업데이트가 필요합니다. 빌드에 따라 적용 시각은 최대 30분 차이가 있을 수 있습니다."],"scope":["버그 수정"]};
 const images={};
-const categories=['특성','전술 스킬','무기 스킬','실험체','무기','방어구','강화','버그 수정'];
+const categories=['특성','전술 스킬','무기 스킬','실험체','무기','방어구','강화','시스템','버그 수정'];
 const labels={buff:'▲ 버프',nerf:'▼ 너프',mixed:'↕ 조정',same:'변경 없음'};
 const $=id=>document.getElementById(id);
 const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
@@ -255,7 +255,7 @@ function groupTitle(group){
   return esc(group.title)+(group.unique?' <span class="effect-tag">[고유 장착 효과]</span>':'');
 }
 function groupIcon(target,group){
-  const key=skillKey(group.title),weapon=masteryWeapon(group),iconKey=weapon?'무기|'+weapon:target.name+'|'+key;
+  const key=group.icon||skillKey(group.title),weapon=masteryWeapon(group),iconKey=weapon?'무기|'+weapon:target.name+'|'+key;
   return images[iconKey]?imageTag(iconKey,'context-icon'+(weapon?' weapon':''),weapon?weapon+' 무기 아이콘':target.name+' '+group.title+' 아이콘'):'';
 }
 function renderChange(target,group,change,sharedHeading=false){
